@@ -1,1 +1,31 @@
-# Flutter Supabase Posts Example\n\nResumen:\n- App Flutter mínima que permite signup/login y CRUD de posts.\n- Crear posts via Edge Function (asigna user_id en servidor).\n- Actualizar y borrar se hacen desde el cliente (RLS obliga que sea owner).\n\nConfiguración:\n1. Reemplaza los placeholders SUPABASE_URL y SUPABASE_ANON_KEY pasándolos por build-time:\n   ```bash\n   flutter run --dart-define=SUPABASE_URL=https://<tu-proyecto>.supabase.co --dart-define=SUPABASE_ANON_KEY=<anon_key> --dart-define=CREATE_POST_FUNCTION_URL=https://<project>.functions.supabase.co/create-post\n   ```\n\n2. Dependencias:\n   ```bash\n   flutter pub get\n   ```\n\n3. Ejecutar:\n   ```bash\n   flutter run\n   ```\n\nEdge Function:\n- Desplegar la función create-post y establecer secret SUPABASE_SERVICE_ROLE_KEY en supabase:\n  ```bash\n  supabase secrets set SUPABASE_SERVICE_ROLE_KEY="<service-role-key>"\n  supabase functions deploy create-post\n  ```\n\nNotas de seguridad:\n- Nunca expongas service_role key en el cliente.\n- RLS protege operaciones directas desde el cliente.\n- Edge Function usa service_role key para insertar posts de forma confiable porque verifica el token del usuario antes de insertar.
+# Flutter Supabase Posts Example\n\nResumen:
+- App Flutter mínima que permite signup/login y CRUD de posts.
+- - Crear posts via Edge Function (asigna user_id en servidor).
+  - - Actualizar y borrar se hacen desde el cliente (RLS obliga que sea owner).
+    -
+    - Configuración:
+    - 1. Reemplaza los placeholders SUPABASE_URL y SUPABASE_ANON_KEY pasándolos por build-time:
+      ```bash   flutter run --dart-define=SUPABASE_URL=https://<tu-proyecto>.supabase.co --dart-define=SUPABASE_ANON_KEY=<anon_key> --dart-define=CREATE_POST_FUNCTION_URL=https://<project>.functions.supabase.co/create-post
+       ```
+        
+    - 2. Dependencias:
+         ```bash
+           flutter pub get
+            ```
+
+    - 3. Ejecutar:
+         ```bash
+            flutter run
+            ```
+
+         Edge Function:
+         - Desplegar la función create-post y establecer secret SUPABASE_SERVICE_ROLE_KEY en supabase:
+         -   ```bash
+         -     supabase secrets set SUPABASE_SERVICE_ROLE_KEY="<service-role-key>"
+         -   supabase functions deploy create-post
+         -     ```
+         -
+         - Notas de seguridad:
+           - Nunca expongas service_role key en el cliente.
+             - RLS protege operaciones directas desde el cliente.
+               - Edge Function usa service_role key para insertar posts de forma confiable porque verifica el token del usuario antes de insertar.
