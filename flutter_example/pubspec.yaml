@@ -1,0 +1,16 @@
+name: supabase_posts_example
+description: Ejemplo Flutter con Supabase: registro/login y CRUD de posts.
+publish_to: "none"
+version: 0.0.1
+environment:
+  sdk: ">=2.18.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  supabase_flutter: ^1.0.0
+  http: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
